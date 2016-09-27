@@ -3,14 +3,8 @@ import { Order } from "./order"
 import { OrderItem } from "./order-item"
 
 
-@Injectable()
-export class OrderService {
 
-  constructor() { }
-
-
-  getAllOrder():Array<Order>{
-    let orders = [
+const ORDERS = [
       new Order([
         new OrderItem('TestA', 1, 100),
         new OrderItem('TestB', 1, 200),
@@ -33,12 +27,22 @@ export class OrderService {
         new OrderItem('FF', 2, 250),
       ])
     ]
-    return orders;
+
+@Injectable()
+export class OrderService {
+   
+  constructor() { }
+
+ 
+
+  getAllOrder(): Array<Order>{
+    
+    return ORDERS;
   }
 
   getOrder(id:string){
     console.log('find: ' + id)
-    this.getAllOrder().find( item =>{
+    return this.getAllOrder().find( item =>{
       
       return item.id == id;
     })
