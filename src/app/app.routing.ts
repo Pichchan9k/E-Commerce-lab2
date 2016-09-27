@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 //import component that we going to use for each page
 import { ReceiptComponent } from "./receipt/receipt.component"
 import { ReceiptSelectorComponent } from "./receipt-selector/receipt-selector.component"
+import { AboutComponent } from "./about/about.component"
 
 
 //create appRoute constant
@@ -22,6 +23,10 @@ const appRoute:Routes = [
     {
         path:'receipt/:id',
         component:ReceiptComponent
+    },
+    {
+        path:'about',
+        component:AboutComponent
     }
     /*
     {

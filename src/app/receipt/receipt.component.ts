@@ -13,7 +13,7 @@ export class ReceiptComponent implements OnInit {
   order
   constructor(private od:OrderService, private currentRoute:ActivatedRoute) {
     //this.order = od.getAllOrder()[0]
-
+    //this.od.load();
    }
 
   ngOnInit() {

@@ -26,19 +26,45 @@ const ORDERS = [
       ])
     ]
 
+const LOCAL_KEY:string = "order_key"
 @Injectable()
 export class OrderService {
    
-  constructor(private http: Http) { }
-
- 
-  getOrders():Observable<any>{
-     return this.http.get("data/orders.json")
+  constructor() {
+    //make everytime we call this service load all data to _orders 
+    this.load();
   }
+
+  private _orders:Array<Order>;
+
+  //save data to localstorage
+  save(){
+    localStorage[LOCAL_KEY] = JSON.stringify(this._orders)
+  }
+
+  //load orderItem data from local storage
+  //if there is not data give it initial data
+  load():Array<Order>{
+    
+    let string_data = localStorage[LOCAL_KEY];
+    let order_array;
+    if(typeof string_data == "undefined")
+    {
+      order_array = ORDERS; //when we not found data
+      //save data in localstorage
+      this._orders =  this.loadData(order_array)
+      this.save()
+    }else{
+      order_array = JSON.parse(string_data);//when we found data
+      this._orders = this.loadData(order_array)
+    }
+    return this._orders;
+  }
+
 
   getAllOrder(): Array<Order>{
     
-    return ORDERS;
+    return this._orders;
   }
 
   getOrder(id:string){
