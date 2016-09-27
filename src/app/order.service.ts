@@ -18,19 +18,30 @@ export class OrderService {
       ], new Date("2015-12-12")),
       new Order([
         new OrderItem('TestD', 1, 100),
-        new OrderItem('TestE', 1, 200),
+        new OrderItem('TestE', 1, 203),
         new OrderItem('TestF', 2, 250),
+      ]),
+      new Order([
+        new OrderItem('TestK', 1, 100),
+        new OrderItem('TestI', 1, 200),
+        new OrderItem('TestN', 2, 250),
+      ])
+      ,
+      new Order([
+        new OrderItem('DD', 1, 100),
+        new OrderItem('EE', 1, 200),
+        new OrderItem('FF', 2, 250),
       ])
     ]
     return orders;
   }
 
-  getOrder(id:number){
-    let all_order = this.getAllOrder();
-    for(let i=0; i < all_order.length; i++)
-      if(all_order[i].id == id)
-        return all_order[i]
-    return null;
+  getOrder(id:string){
+    console.log('find: ' + id)
+    this.getAllOrder().find( item =>{
+      
+      return item.id == id;
+    })
   }
 
 

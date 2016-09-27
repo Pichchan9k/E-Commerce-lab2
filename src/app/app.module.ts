@@ -9,14 +9,16 @@ import { TaxPipePipe } from './tax-pipe.pipe';
 
 //import from order.service
 import { OrderService } from "./order.service";
-import { ReceiptComponent } from './receipt/receipt.component'
+import { ReceiptComponent } from './receipt/receipt.component';
+import { ReceiptSelectorComponent } from './receipt-selector/receipt-selector.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     TotalPipePipe,
     TaxPipePipe,
-    ReceiptComponent
+    ReceiptComponent,
+    ReceiptSelectorComponent
   ],
   imports: [
     BrowserModule,
