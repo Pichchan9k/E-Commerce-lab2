@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { Order } from "./order"
 import { OrderItem } from "./order-item"
 
-
-
 const ORDERS = [
       new Order([
         new OrderItem('TestA', 1, 100),
@@ -31,9 +29,12 @@ const ORDERS = [
 @Injectable()
 export class OrderService {
    
-  constructor() { }
+  constructor(private http: Http) { }
 
  
+  getOrders():Observable<any>{
+     return this.http.get("data/orders.json")
+  }
 
   getAllOrder(): Array<Order>{
     
@@ -47,6 +48,21 @@ export class OrderService {
       return item.id == id;
     })
   }
+
+  loadData(orders_json_array:Array<any>){
+    let orders:Array<Order> = [];
+    orders_json_array.forEach( (orderItem, index, arr)=>{
+      let items:Array<OrderItem> = []
+      orderItem.items.forEach( (item, item_index, item_arr)=>{
+        items.push(new OrderItem(item.item, item.quantity, item.unit_price))
+      })
+      let order = new Order(items, new Date(orderItem.create_time))
+      order.id = orderItem.id;
+      orders.push(order);
+    } )
+    return orders;
+  }
+  //then tea break :) 
 
 
 }
