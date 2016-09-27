@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { OrderService } from "../order.service"
 
 @Component({
   selector: 'app-receipt',
@@ -7,10 +8,11 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ReceiptComponent implements OnInit {
 
-  @Input()
   order
+  constructor(od:OrderService) {
+    this.order = od.getAllOrder()[0]
 
-  constructor() { }
+   }
 
   ngOnInit() {
   }
